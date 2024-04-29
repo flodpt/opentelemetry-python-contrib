@@ -184,6 +184,7 @@ class RemouladeInstrumentor(BaseInstrumentor):
         )
         instrumentation_middleware = _InstrumentationMiddleware(self._tracer)
 
+        broker.middleware_order.insert(0, _InstrumentationMiddleware)
         broker.add_extra_default_middleware(instrumentation_middleware)
 
     def _uninstrument(self, **kwargs):
